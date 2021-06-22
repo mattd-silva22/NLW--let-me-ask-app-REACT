@@ -4,6 +4,7 @@ import logoImg from '../assets/img/logo.svg'
 import googleIcon from '../assets/img/google-icon.svg'
 
 import '../styles/scss/auth.scss'
+import {  ButtonPrimary } from '../components/ButtonPrimary'
 
 export function Home() {
     return (
@@ -16,14 +17,14 @@ export function Home() {
             </aside>
 
             <main>
-                <div>
+                <div className="main-content">
                     <img src={logoImg} alt="" />
-                    <button>
+                    <button className="create-room-btn">
                         <img src={googleIcon} alt="" />
                         crie sua sala com o google
                     </button>
 
-                    <div> ou entre em uma sala</div>
+                    <div className="separator">ou entre em uma sala</div>
 
                     <form action="">
                         <input 
@@ -31,9 +32,9 @@ export function Home() {
                           placeholder='Digite o codigo da sala'
                         />
 
-                        <button type='submit'>
-                            entrar na sala 
-                        </button>
+                        <ButtonPrimary type="submit">
+                            Entre em uma sala
+                        </ButtonPrimary>
                     </form>
 
                 </div>
