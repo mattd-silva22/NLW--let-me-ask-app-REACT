@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 import { ButtonHTMLAttributes } from 'react'
 import '../styles/scss/btn-primary.scss'
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>
