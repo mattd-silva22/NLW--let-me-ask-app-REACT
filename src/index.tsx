@@ -3,16 +3,16 @@ import ReactDOM from 'react-dom';
 
 import App from './App' ;
 
-import {Button}  from './components/Button';
+// import './services/firebase';
+
+import './styles/scss/global.scss'
+
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <App /> 
-    <Button/>
-    <Button/>
-    <Button/>
-    <Button/>
+    
+    <App/>
     
   
   </React.StrictMode>,
