@@ -1,6 +1,7 @@
 @import 'variables';
 
 
+
 #page-new-room {
     display: flex;
     align-items: stretch;
@@ -83,6 +84,11 @@
             a {
                 color: #e559f9;
             }
+        }
+
+        p.teste {
+            color: #00FF00;
+            font-size: 32px;
         }
 
         button {
