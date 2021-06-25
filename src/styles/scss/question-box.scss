@@ -39,4 +39,28 @@ footer {
             
         }
     }
+
+    button {
+        border: 0px;
+        background: transparent;
+        cursor: pointer;
+        &.like-btn {
+            display: flex;
+            align-items: flex-end;
+            color: #737380;
+            gap: 8px;
+        }
+
+        &.liked {
+            color: #835afd;
+
+            svg path {
+                stroke: #835afd;
+            }
+        }
+
+        &:hover {
+            filter: brightness(0.7);
+        }
+    }
 }
