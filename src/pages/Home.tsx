@@ -45,6 +45,12 @@ export function Home() {
                 return;
             }
 
+            const isRoomEnded = await database.ref(`rooms/${roomCode}/endedAt`).get()
+            if(isRoomEnded.exists()) {
+                alert(`Sala encerrada  as ${isRoomEnded.val()}`)
+                return;
+            }
+
             history.push(`/rooms/${roomCode}`)
 
     }

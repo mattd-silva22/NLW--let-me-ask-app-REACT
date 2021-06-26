@@ -5,6 +5,8 @@ import { useHistory, useParams } from 'react-router-dom'
 
 import logoImg from '../assets/img/logo.svg'
 import delImg from '../assets/img/delete.svg'
+import checkImg from '../assets/img/check.svg'
+import answerImg from '../assets/img/answer.svg'
 
 
 import { ButtonPrimary } from '../components/ButtonPrimary'
@@ -15,6 +17,7 @@ import '../styles/scss/room.scss'
 import { database } from "../services/firebase";
 import { QuestionBox } from "../components/QuestionBox";
 import { useRoom } from "../hooks/useRoom";
+
 
 
 type RoomParams = {
@@ -33,11 +36,15 @@ export function AdminRoom() {
     const params = useParams<RoomParams>();
     const roomId = params.id;
 
-    const { roomTitle, questions} = useRoom(roomId);
+    const { roomTitle, questions, roomAuthorId} = useRoom(roomId);
+
+    
 
     async function handleCloseRoom(roomID:string) {
+        let closeDate = new Date()
         await database.ref(`rooms/${roomId}`).update({
-            endedAt: new Date(),
+            
+            endedAt: `${closeDate.toLocaleDateString('pt-BR')}  ${closeDate.toLocaleTimeString('pt-BR')}`,
         })
 
         history.push('/')
@@ -52,6 +59,31 @@ export function AdminRoom() {
         }
     }
 
+
+    async function handleCheckQuestionAsAnswered(questionId:string) {
+        await database.ref(`rooms/${roomId}/questions/${questionId}`).update({isAnswered: true})
+    }
+
+    async function handleHighlightQuestion(questionId:string) {
+        await database.ref(`rooms/${roomId}/questions/${questionId}`).update({isHighlighted: true})
+    }
+
+    
+    // const isUserAdmin = (user?.id === roomAuthorId);
+    
+    // if (!isUserAdmin )  {
+    //     return
+    // }
+
+
+   
+    
+
+      
+
+    
+
+
     
 
     
@@ -62,6 +94,7 @@ export function AdminRoom() {
 
    
     return (
+        
         <div id='page-room'>
             <header>
                 <div className="content">
@@ -78,11 +111,18 @@ export function AdminRoom() {
                 </div>
             </header>
 
+            
+
+           
+
+         
+    
+
             <main >
                 <div className="room-title">
                     <h1>Sala: {roomTitle}</h1>
                     { questions.length === 0 ? (
-                        null
+                        <span> {questions.length} pergunta(s)</span>
                     ) :  (
                         <span> {questions.length} pergunta(s)</span>
                     )}
@@ -96,7 +136,31 @@ export function AdminRoom() {
                             key={question.id}
                             content={question.content}
                             author = {question.author}
+                            isAnswered = {question.isAnswered}
+                            isHighlighted = {question.isHighlighted}
                         >
+                           
+
+                           {!question.isAnswered && (
+                              <>
+                                <button
+                                type="button"
+                                onClick={()=> handleCheckQuestionAsAnswered(question.id)}
+                                >
+                                    <img src={checkImg} alt="" />
+                                </button>
+        
+        
+                                
+                                <button
+                                type="button"
+                                onClick={()=> handleHighlightQuestion(question.id)}
+                                >
+                                    <img src={answerImg} alt="" />
+                                </button>
+                             </>
+                           )}
+
                            <button
                            type="button"
                            onClick={()=> handleDeleteQuestion(question.id)}

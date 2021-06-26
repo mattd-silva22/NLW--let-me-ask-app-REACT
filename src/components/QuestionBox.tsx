@@ -11,16 +11,19 @@ type QuestionProps = {
     }
 
     children?: ReactNode;
+    isAnswered?: boolean;
+    isHighlighted?: boolean;
+    
 }
 
 
 export function QuestionBox(props:QuestionProps) {
     return (
-        <div className="question">
+        <div className={`question ${props.isAnswered ? 'answered' : ''}  ${props.isHighlighted && !props.isAnswered ? 'highlight' : ''}`}>
             <p>{props.content}</p>
 
             <footer>
-                <div className="user-info">
+                <div className="user-info" >
                     <img src={props.author.avatar} alt="" />
                     <span>{props.author.name}</span>
                 </div>

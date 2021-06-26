@@ -1,6 +1,8 @@
 @import 'variables';
 
 
+
+
 .question {
     background-color: #fefefe;
     border-radius: 8px;
@@ -9,6 +11,19 @@
 
     & + .question {
         margin-top: 12px;
+    }
+
+    &.highlight {
+        background: #f4f8ff;
+        border: 1px solid gold;
+
+        footer .user-info span {
+            color: #29292e;
+        }
+    }
+
+    &.answered {
+        background-color: #DBDCDD;
     }
 }
 

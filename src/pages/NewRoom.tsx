@@ -13,17 +13,20 @@ import { FormEvent, useState } from 'react'
 import { useAuth } from '../hooks/useAuth'
 
 import { database } from '../services/firebase'
+import { Room } from './Room'
 
 
 
 
 export function NewRoom() {
-
+    
     const history = useHistory()
     
     const { user } = useAuth(); 
 
     const [ newRoom , setNewRoom ]   = useState('');
+
+    
 
     async function handleCreateRomm(event:FormEvent) {
         event.preventDefault()
@@ -38,7 +41,8 @@ export function NewRoom() {
             
         })
 
-        history.push(`${firebaseRoom.key}`)
+        history.push(`/admin/rooms/${firebaseRoom.key}`)
+        // history.push(`/rooms/${firebaseRoom.key}`)
         
     }
     return (
@@ -55,11 +59,14 @@ export function NewRoom() {
                 <div className="main-content">
                     <img src={logoImg} alt="" />
                     
+                    <div>
+                        <p className='teste'> Bem-vindo , {user?.name} </p>
 
-                    <h2>Crie uma  nova sala </h2>
+                        <h2>Crie uma  nova sala </h2>
+                    </div>
 
                     
-                    <p className='teste'> {user?.name} </p>
+                    
 
                     <form onSubmit={handleCreateRomm}>
                         <input 

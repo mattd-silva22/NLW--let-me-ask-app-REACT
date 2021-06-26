@@ -62,9 +62,16 @@
 
         h2 {
             font-size: 24px;
-            margin: 64px 0 24px;
+            margin: 16px 0px  64px  0px;
             font: 'poppins' , sans-serif;
         }
+
+        p.teste {
+            color: #737380;
+            font-size: 24px;
+            margin: 28px 0px;
+        }
+
 
         form {
             input {
@@ -86,11 +93,7 @@
             }
         }
 
-        p.teste {
-            color: #00FF00;
-            font-size: 32px;
-        }
-
+        
         button {
             margin-top: 16px;
             
