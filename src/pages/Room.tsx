@@ -11,6 +11,7 @@ import '../styles/scss/room.scss'
 import { database } from "../services/firebase";
 import { QuestionBox } from "../components/QuestionBox";
 import { useRoom } from "../hooks/useRoom";
+import { UserIcon } from "../components/UserIcon";
 
 
 type RoomParams = {
@@ -23,9 +24,9 @@ type RoomParams = {
 
 export function Room() {
 
-    const { user } = useAuth(); 
+    const { user , singInWithGoogle } = useAuth(); 
     const [ newQuestion , setNewQuestion] = useState('')
-
+    
     const params = useParams<RoomParams>();
     const roomId = params.id;
 
@@ -33,7 +34,11 @@ export function Room() {
 
     
 
-    
+    async function handleLogIn() {
+        if (!user) {
+            await  singInWithGoogle()
+         }
+    }
 
 
     
@@ -89,8 +94,14 @@ export function Room() {
             <header>
                 <div className="content">
                     <img src={logoImg} alt="" />
-
-                    <RoomButton code={roomId}/>
+                    <div>
+                       <RoomButton code={roomId}/> 
+                        {user && (
+                            <UserIcon/>
+                        )}
+                       
+                    </div>
+                    
                 </div>
             </header>
 
@@ -119,7 +130,7 @@ export function Room() {
                             </div>
                         ) : (
                             <span>
-                                para enviar uma pergunta <button>faça seu login</button>  
+                                para enviar uma pergunta <button onClick={ handleLogIn}>faça seu login</button>  
                             </span>
                         )
                     
@@ -168,4 +179,8 @@ export function Room() {
             </main>
         </div>
     )
+}
+
+function singInWithGoogle() {
+    throw new Error("Function not implemented.");
 }

@@ -17,6 +17,7 @@ import '../styles/scss/room.scss'
 import { database } from "../services/firebase";
 import { QuestionBox } from "../components/QuestionBox";
 import { useRoom } from "../hooks/useRoom";
+import { UserIcon } from "../components/UserIcon";
 
 
 
@@ -41,13 +42,18 @@ export function AdminRoom() {
     
 
     async function handleCloseRoom(roomID:string) {
-        let closeDate = new Date()
-        await database.ref(`rooms/${roomId}`).update({
+        if( window.confirm('deseja fechar a sala ?')) {
+            let closeDate = new Date()
+            await database.ref(`rooms/${roomId}`).update({
             
             endedAt: `${closeDate.toLocaleDateString('pt-BR')}  ${closeDate.toLocaleTimeString('pt-BR')}`,
         })
 
         history.push('/')
+        } else {
+            return;
+        }
+        
 
     }
 
@@ -105,6 +111,10 @@ export function AdminRoom() {
                       <ButtonPrimary
                         onClick={()=> handleCloseRoom(roomId)}
                       >Encerrar sala</ButtonPrimary>  
+
+                     
+                          
+                      <UserIcon/>
                     </div>
 
                     
