@@ -69,7 +69,7 @@ export function Home() {
                 <div className="main-content">
                     <img src={logoImg} alt="" />
                     <button className="create-room-btn" onClick={handleCreateRoom}>
-                        <img src={googleIcon} alt="" />
+                        <img src={googleIcon} alt="Faça login com sua conta google" />
                         crie sua sala com o google
                     </button>
 
