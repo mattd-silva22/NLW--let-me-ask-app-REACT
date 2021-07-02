@@ -50,7 +50,7 @@ export function NewRoom() {
 
             <aside>
                 <img src={ilustrationImg} alt="foto capa" />
-                <strong>Crie salsa de Q&amp;A ao-vivo</strong>
+                <strong>Crie sala de Q&amp;A ao-vivo</strong>
                 <p>Tire as duvidas de sua audiencia em tempo-real</p>
             </aside>
 

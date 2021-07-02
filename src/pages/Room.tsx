@@ -143,7 +143,7 @@ export function Room() {
                 </form>
 
                 <div className="question-list">
-                    {questions.map(question => {
+                    {questions.reverse().map(question => {
                     return (
                         <QuestionBox
                             key={question.id}
