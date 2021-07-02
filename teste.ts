@@ -39,7 +39,7 @@ let user1 = {
 
 function displayWelcomeMsg(user: User) {
 
-
+ let x = test ;
     return ` ola , ${user.address.city} - ${user.address.uf} `
 
 
